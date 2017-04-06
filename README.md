@@ -29,6 +29,8 @@ The example below will use a RaspberryPi 2 board but you can easily modify the e
 
 ## Usage
 
+If you are using a RaspberryPi, run `raspi-config` and enable the serial port but disable the Linux login support in `Interfacing Options>Serial`.
+
 The first thing we need to do is to obtain an instance of `UARTInterface` from SwiftyGPIO and use it to initialize the `UBloxGPS` object:
 
 ```swift
