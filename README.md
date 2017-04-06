@@ -11,7 +11,7 @@
 
 # Summary
 
-This library interfaces with boards based on u-Blox 6/7/8 A-GPS receivers, that use the NMEA protocol to provide GPS data over an UART serial connection (most NEO6M boards, that I recommend, cost a measly $20). UBX configuration commands and connection via I2C are not supported at the moment.
+This library interfaces with boards based on u-Blox 6/7/8 A-GPS receivers, that use the NMEA protocol to provide GPS data over an UART serial connection (most NEO6M boards cost a measly $20). UBX configuration commands and connection via I2C are not supported at the moment.
 
 You'll be able to retrieve you current location, elevation, speed, status data on the currently reachable satellites and more.
 
@@ -29,7 +29,7 @@ The example below will use a RaspberryPi 2 board but you can easily modify the e
 
 ## Usage
 
-If you are using a RaspberryPi, run `raspi-config` and enable the serial port but disable the Linux login support in `Interfacing Options>Serial`.
+If you are using a RaspberryPi, run `raspi-config` and enable the serial port _but disable_ the Linux login support in `Interfacing Options > Serial`.
 
 The first thing we need to do is to obtain an instance of `UARTInterface` from SwiftyGPIO and use it to initialize the `UBloxGPS` object:
 
@@ -43,7 +43,7 @@ var uart = uarts[0]
 let gps = UBloxGPS(uart)
 ```
 
-We must than start the background thread that will update the GPS location and other information calling `startUpdating`. The library allows to print a recap of all available data with `printStatus`:
+We must then start the background thread that will update the GPS location and other information calling `startUpdating`. The library allows to print a quick recap of all available data with `printStatus`:
 
 ```swift
 gps.startUpdating()
@@ -60,16 +60,16 @@ The `UBloxGPS` object has some accessible properties that you can use to retriev
 
 | Property | Description |
 |-----------|------------|
-| isDataValid | Is the current GPS data valid for the receiver? |
+| isDataValid | Is the current GPS data valid? True when a valid position is obtained |
 | datetime | Date and time in stringified format |
 | latitude | Latitude in degrees |
 | longitude | Longitude in degrees |
-| satellitesActiveNum | Number of active satellites (visible and actually being received) |
-| satellitesNum | Number of satellites visible |
+| satellitesNum | Number of visible satellites |
+| satellitesActiveNum | Number of active satellites (visible and with a signal strong enough to used) |
 | altitude | Altitude from sea level |
 | altitudeUnit | Unit for altitude |
 
-Whe you don't need to update the location data just call `stopUpdating()`.
+When you don't need to update the location data anymore just call `stopUpdating()`.
 
 
 ## Installation
