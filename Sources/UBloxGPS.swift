@@ -97,7 +97,7 @@ public class UBloxGPS{
       print("Latitude:",latitude,"Longitude:",longitude)
       print("Altitude:",altitude,altitudeUnit)
       print("Visible satellites:",satellitesNum)
-      print("Active satellites:",satellitesActiveNum)
+      print("Usable satellites:",satellitesActiveNum)
       print("----------------------------------------------------------------------")
       satellites.forEach {
          print("Satellite Id:",$0.id,"Elevation(deg):",$0.elevation, 
