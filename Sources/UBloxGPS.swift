@@ -137,8 +137,8 @@ public class UBloxGPS{
                         Double(String(comp[3].characters.dropFirst(2)))!/60
             latitude *= Double(NS)
             latitude = latitude.roundTo(places: 8)
-            longitude = Double(String(comp[5].characters.prefix(2)))! + 
-                         Double(String(comp[5].characters.dropFirst(2)))!/60
+            longitude = Double(String(comp[5].characters.prefix(3)))! + 
+                         Double(String(comp[5].characters.dropFirst(3)))!/60
             longitude *= Double(EW)
             longitude = longitude.roundTo(places: 8)
          case "$GPGGA":
