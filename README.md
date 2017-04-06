@@ -15,6 +15,8 @@ This library interfaces with boards based on u-Blox 6/7/8 A-GPS receivers, that 
 
 You'll be able to retrieve you current location, elevation, speed, status data on the currently reachable satellites and more.
 
+The first time you'll use the receiver it will need a few minutes to find some satellites and provide a position, but after that a few seconds will be enough to obtain a valid position.
+
 ![NEO6M board](https://github.com/uraimo/UBloxGPS.swift/raw/master/gps.jpg)
 
 ## Supported Boards
