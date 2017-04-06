@@ -129,7 +129,7 @@ public class UBloxGPS{
 
             isDataValid = (comp[2] == "A")
             // quadrants, will be used to apply the right sign to lat/lon
-            NS = (comp[2] == "N") ? 1 : -1
+            NS = (comp[2] == "N") ? -1 : 1
             EW = (comp[6] == "E") ? 1 : -1
 
             // latitude and longitude in degrees+minutes format
