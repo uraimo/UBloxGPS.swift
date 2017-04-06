@@ -153,8 +153,8 @@ public class UBloxGPS{
          case "$GPGSV":
             // Satellite info (multiple records, 4 sats per record)
             // numGPGSV,gpgsvId,numSats,(repeated:4){satId,elevation,azimuth,snrdB},ck
-            let msgId = Int(comp[2])!
-            satellitesNum = Int(comp[3])!
+            let msgId = Int(comp[2]) ?? 0
+            satellitesNum = Int(comp[3]) ?? 0
             for i in 1...4 {
                guard comp.count >= (i*4+4) else { break } //No more elements in this GSV
 
