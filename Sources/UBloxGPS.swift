@@ -125,7 +125,9 @@ public class UBloxGPS{
          case "$GPRMC":
             // time,valid,lat,NorS,lon,EorW,speed,course,date,magn,EorW,ck
             // time= hhmmss.ss, date= ddmmyy
-            datetime = comp[9]+" "+String(comp[1].characters.dropLast(3))
+            if comp[1].characters.count > 0 { 
+               datetime = comp[9]+" "+String(comp[1].characters.dropLast(3))
+            }
 
             isDataValid = (comp[2] == "A")
             // quadrants, will be used to apply the right sign to lat/lon
@@ -133,14 +135,16 @@ public class UBloxGPS{
             EW = (comp[6] == "E") ? 1 : -1
 
             // latitude and longitude in degrees+minutes format
-            latitude = Double(String(comp[3].characters.prefix(2)))! + 
-                        Double(String(comp[3].characters.dropFirst(2)))!/60
-            latitude *= Double(NS)
-            latitude = latitude.roundTo(places: 8)
-            longitude = Double(String(comp[5].characters.prefix(3)))! + 
-                         Double(String(comp[5].characters.dropFirst(3)))!/60
-            longitude *= Double(EW)
-            longitude = longitude.roundTo(places: 8)
+            if (comp[3].characters.count > 0) && (comp[5].characters.count > 0) { 
+               latitude = Double(String(comp[3].characters.prefix(2)))! + 
+                           Double(String(comp[3].characters.dropFirst(2)))!/60
+               latitude *= Double(NS)
+               latitude = latitude.roundTo(places: 8)
+               longitude = Double(String(comp[5].characters.prefix(3)))! + 
+                            Double(String(comp[5].characters.dropFirst(3)))!/60
+               longitude *= Double(EW)
+               longitude = longitude.roundTo(places: 8)
+            }
          case "$GPGGA":
             // time,lat,NorS,lon,EorW,quality,numSats,Hdiluition,altitude,unitAltitude,geoidsep,unitGeoidsep,dataAge,[missing in ublox],ck
             satellitesActiveNum = Int(comp[7]) ?? 0
