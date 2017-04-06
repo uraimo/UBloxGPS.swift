@@ -27,16 +27,45 @@ The example below will use a RaspberryPi 2 board but you can easily modify the e
 
 ## Usage
 
-The first thing we need to do is to obtain an instance of `SPIOutput` from SwiftyGPIO and use it to initialize the `MCP3008` object:
+The first thing we need to do is to obtain an instance of `UARTInterface` from SwiftyGPIO and use it to initialize the `UBloxGPS` object:
 
 ```swift
 import SwiftyGPIO
 import UBloxGPS
 
-let spis = SwiftyGPIO.UARTs(for:.RaspberryPi2)!
-let spi = spis[0]
-let m = MCP3008(spi)
+let uarts = SwiftyGPIO.UARTs(for:.RaspberryPi2)!
+var uart = uarts[0]
+
+let gps = UBloxGPS(uart)
 ```
+
+We must than start the background thread that will update the GPS location and other information calling `startUpdating`. The library allows to print a recap of all available data with `printStatus`:
+
+```swift
+gps.startUpdating()
+
+// We'll simply clear the screen and print a recap of the current gps data
+while true {
+   system("clear")
+   gps.printStatus()
+   sleep(2)
+}
+```
+
+The `UBloxGPS` object has some accessible properties that you can use to retrieve the specific data you need:
+
+| Property | Description |
+|-----------|------------|
+| isDataValid | Is the current GPS data valid for the receiver? |
+| datetime | Date and time in stringified format |
+| latitude | Latitude in degrees |
+| longitude | Longitude in degrees |
+| satellitesActiveNum | Number of active satellites (visible and actually being received) |
+| satellitesNum | Number of satellites visible |
+| altitude | Altitude from sea level |
+| altitudeUnit | Unit for altitude |
+
+Whe you don't need to update the location data just call `stopUpdating()`.
 
 
 ## Installation
