@@ -11,7 +11,7 @@
 
 # Summary
 
-This library interfaces with boards based on u-Blox 6/7/8 A-GPS receivers, that use the NMEA protocol to provide GPS data over an UART serial connection (most NEO6M boards cost a measly $20). UBX configuration commands and connection via I2C are not supported at the moment.
+This library interfaces with boards based on u-Blox 6/7/8 A-GPS receivers, that use the NMEA0183 protocol to provide GPS data over an UART serial connection (for a low cost option, look into the NEO6M-based boards that usually cost a measly $20). UBX configuration commands and connection via I2C are not supported at the moment.
 
 You'll be able to retrieve you current location, elevation, speed, status data on the currently reachable satellites and more.
 
