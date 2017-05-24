@@ -11,9 +11,9 @@
 
 # Summary
 
-This library interfaces with boards based on u-Blox 6/7/8 A-GPS receivers, that use the NMEA0183 protocol to provide GPS data over an UART serial connection (for a low cost option, look into the NEO6M-based boards that usually cost a measly $20). UBX configuration commands and connection via I2C are not supported at the moment.
+This library interfaces with boards based on u-Blox 6/7/8 A-GPS receivers, that use the NMEA0183 protocol to provide GPS data over an UART serial connection (for a low cost option, search for some NEO6M-based board that usually cost around a measly $20). UBX configuration commands and connection via I2C are not supported at the moment.
 
-You'll be able to retrieve you current location, elevation, speed, status data on the currently reachable satellites and more.
+You'll be able to retrieve your current location, elevation, speed, status data on the currently reachable satellites and more.
 
 The first time you'll use the receiver it will need a few minutes to find some satellites and provide a position, but after that a few seconds will be enough to obtain a valid position.
 
@@ -68,8 +68,9 @@ The `UBloxGPS` object has some accessible properties that you can use to retriev
 | satellitesActiveNum | Number of active satellites (visible and with a signal strong enough to used) |
 | altitude | Altitude from sea level |
 | altitudeUnit | Unit for altitude |
+| satellites | Information about the satellites that are currently in the line of sight (max 12), the structure contains: a numerical id, elevation (0..60 in degrees), azimuth (0..360 in degrees) and an snr(dB) value for an indication of the noise affecting the signal |
 
-When you don't need to update the location data anymore just call `stopUpdating()`.
+When you don't need to update the location data anymore or to pause updates just call `stopUpdating()`.
 
 
 ## Installation
