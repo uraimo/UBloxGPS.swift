@@ -75,6 +75,9 @@ public class UBloxGPS{
 
    /// Starts updating the GPS data in a background Thread
    public func startUpdating(){
+      //Ignored by Linux
+      guard #available(iOS 10.0, macOS 10.12, *) else {return}
+
       if updateThread == nil {
          updateThread = Thread{ [unowned self] in
             self.update()
